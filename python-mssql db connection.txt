@@ -1,0 +1,21 @@
+ref : https://django-mssql.readthedocs.io/en/latest/quickstart.html#dependencies
+
+prerequisite driver library:
+=============================
+pip install pyodbc
+pip install django-mssql
+pip install mssql-django
+=============================
+
+DATABASES = {
+    'default': {
+        'NAME': 'test',
+        'ENGINE': 'mssql',
+        'HOST': 'Kantilal-Python\SQLEXPRESS',
+        'USER': '',
+        'PASSWORD': '',
+        'OPTIONS': {'driver': 'ODBC Driver 17 for SQL Server',
+                    }
+    }
+}
+=================================================================
