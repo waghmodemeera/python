@@ -1,0 +1,355 @@
+Application
+
+
+1.Mobile application -- andriod ,ios,java,windows
+2.Web Application -- web -- internet -- client - browser
+3.Desktop Application -- application install -- desktop
+
+Web application vs Web site
+============================
+web pages + along middle ware logic
+hdfc net
+
+---
+
+collection of web pages:
+----------------------------
+
+Django --> web framework :
+normal -  web pages
+
+test server 
+
+
+dev env --> server
+
+
+test.html
+index.html ---- -- server
+
+
+www.testpython.com    address -- -- IP  address 
+-------------------
+index.html
+
+
+
+
+domain --> IP
+
+webapplication --Project
+
+Project --> application
+
+
+
+How to create Project?
+-------------------------
+
+
+pip install django
+
+Why?
+
+
+django  --> 95 % done
+
+scalable --> 100 user --> 10000 --> 1l -->10 L
+
+
+Feature:
+
+2005 --> 
+
+Django -- NASA
+
+
+project:
+django-admin startproject hdfc
+
+asgi.py  -- deployement
+
+wsgi.py -- deployement
+
+urls.py -- project urls --- 
+setting.py  project --> application 
+
+
+
+
+os -- setting
+
+ application -- 
+
+
+
+1.project 
+
+2.cd project
+python manage.py startapp appname
+
+admin.py --- admin related task
+views.py -- bussiness logic
+models.py -- database logic]
+test.py-- tester 
+apps.py -- apps create 
+
+
+
+1.project create
+2.application create 
+
+
+Django :
+
+Web Framework :
+
+Dev Env + Test Env (Test Server)
+
+project Test ---> server 
+
+Project :-   collection of application + Settting
+==================================================
+
+How to Create Project?
+
+pip install django
+
+django-admin startproject projectname
+
+
+asgi.py
+wsgi.py
+setting.py --  Project level + Application level setting
+
+urls.py -- project urls
+
+
+95%  + 5%
+
+
+How to Application:
+
+cd projectname
+
+python manage.py startapp appname
+
+admin.py
+views.py
+models.py
+test.py
+apps.py
+
+
+
+
+====================================Practical==========================
+pip install django
+1.Project create
+2.application create
+3.Register application into setting.py 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'loan'
+]
+
+
+Project 
+
+Application
+
+
+==========================================================================
+1.Project create
+django-admin startproject projectname
+
+2. create application
+cd projectname
+
+python manage.py startapp appaname
+
+3.Register app into Setting.py
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'loan'
+]
+
+4.copy urls.py from project into application
+
+5.design bussiness logic inside views.py
+
+6.inside urls.py from application 
+
+from applicationname import views
+
+from debitcard import views
+
+urlpatterns = [
+    path('mastercard/', views.mastercard),
+    path('visacard/', views.visacard),
+]
+
+7.design Project level url in urls.py
+
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('debitcard/', include('debitcard.urls')),
+]
+
+##################TEMPLATE###############################
+8.Create Dir 'templates' at project level
+
+9.create dir inside templates according application name
+
+10.create html file inside application dir 
+
+11.go to setting.py to calculate TEMPLATE Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATE_DIR = Path.joinpath(BASE_DIR,'templates')
+
+12.  copy variable name 'TEMPLATE_DIR' and paste into DIRS - list
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [TEMPLATE_DIR],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+########################TEMPLATE TAG########################
+To inject dynamic content inside html page
+
+
+def product_list(r):
+    data  = {'name':'copper','price':45454,'qnty':111515}
+
+    return render(r,'products/productlist.html',context=data)
+	
+inside html page 
+
+<h1> NAME : {{name}} </h1>
+<h1> Price : {{price}}</h1>
+<h1> Qnty : {{qnty}}</h1>
+
+###################################################################
+8.to run server
+
+python manage.py runserver
+
+=====================================================================
+css : 
+
+
+
+Project  creation
+
+Appl
+
+
+1.mysql install https://dev.mysql.com/downloads/installer/
+
+configuration :  username ,password
+
+2.setting.py
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django373839',
+        'USER':'root',
+        'PASSWORD' : 'root'
+    }
+}
+
+3. to check connection
+
+python manage.py shell
+
+
+from django.db import connection
+obj = connection.cursor()
+
+successfully executed that means connection succeded
+
+4.to create table  jump to app models
+
+
+class Employee(models.Model):
+    name = models.CharField(max_length=25)
+    age = models.IntegerField()
+    email = models.EmailField()
+    mobile = models.IntegerField()
+	
+	
+python manage.py makemigrations
+
+python manage.py migrate
+
+#############################################################################
+
+project
+
+application
+
+register
+
+
+models.py
+
+class TableName
+	fields 
+	
+
+mysql with Django Project
+
+python manage.py shell
+from django.db import connection
+c = connection.cursor()
+
+
+python manage.py makemigrations ( create sql statement from python code)
+python manage.py migrate ( to apply sql on mysql db)
+
+
+
+
+
+
+
+
+
+select * from loan_loandetails  -- SQL
+
+
+Python --> 
+
+<QuerySet [<LoanDetails: LoanDetails object (1)>, <LoanDetails: LoanDetails object(2)>]> 
+
+
+
+
+
+
+
